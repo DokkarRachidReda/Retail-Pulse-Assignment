@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         preCalculedVects = loadPreCalculedVects(this)
 
-        Log.e("rrrrrr",preCalculedVects[0].label.toString())
+
 
         upload.setOnClickListener(View.OnClickListener {
             Dexter.withContext(this)
@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
 
             interpreter.run( imageBuffer.buffer , outputs.buffer )
 
+            
 
         }
 

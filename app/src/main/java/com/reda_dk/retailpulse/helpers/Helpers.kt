@@ -71,3 +71,18 @@ import java.io.InputStreamReader
 
     return image
 }
+
+
+
+ fun ecludienDist(vect1 :MainActivity.MyVector , vect2 : MainActivity.MyVector):Double{
+
+     var dist = 0.0
+
+     for (i in 0..vect1.value.size-1){
+
+         dist += Math.pow(vect1.value[i] - vect2.value[i],2.0)
+
+     }
+
+     return Math.sqrt(dist)
+ }
