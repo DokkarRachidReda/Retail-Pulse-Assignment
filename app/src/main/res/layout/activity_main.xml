@@ -49,12 +49,13 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="24sp"
         android:gravity="center"
+        android:id="@+id/labelText"
         />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="0.25"
         />
 
     <Button

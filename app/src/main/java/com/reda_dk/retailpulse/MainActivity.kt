@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         preCalculedVects = loadPreCalculedVects(this)
-
+        Log.e("rrrrr",preCalculedVects.size.toString())
 
 
         upload.setOnClickListener(View.OnClickListener {
@@ -98,9 +98,10 @@ class MainActivity : AppCompatActivity() {
 
         if(requestCode==100 && data != null){
             Log.d("image upload","Image received in Activity Result")
-            image.setImageURI(data.data)
 
-            var bitmap = uriToBitmap(data.data!!,this)
+            labelText.text=""
+
+            val bitmap = uriToBitmap(data.data!!,this)
             Bitmap.createScaledBitmap(
                 bitmap, 300, 300, false);
             // Build a TensorImage object
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
 
             // Process and normalize  the image
             tensorImage = imageProcessor.process( tensorImage )
-            var imageBuffer = tensorProcessor.process(tensorImage.tensorBuffer)
+            val imageBuffer = tensorProcessor.process(tensorImage.tensorBuffer)
 
             //Loading the model
             val model = FileUtil.loadMappedFile( this , "rock_paper_sci_model.tflite" )
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
 
             //run the model
-
+            outputs.buffer.clear()
             interpreter.run( imageBuffer.buffer , outputs.buffer )
 
             // copying tensor to MyVector
@@ -133,17 +134,30 @@ class MainActivity : AppCompatActivity() {
             // finding correct Label
             var minDist  = Double.MAX_VALUE
             var dist=0.0
-            var label = 0
+            var label = -1
 
             for (i in 0 .. preCalculedVects.size -1 ){
                 dist = ecludienDist(outputVector,preCalculedVects[i])
+
+                //Log.e("rrrr",dist.toString())
+
                 if(minDist > dist ){
                     minDist = dist
                     label = preCalculedVects[i].label
                 }
             }
 
-            Log.d("out","------------------>"+label.toString())
+            if(label==0){
+                labelText.text = "it's a Rock"
+            }else if(label==1){
+                labelText.text = "it's a Paper"
+            }else if(label==2){
+                labelText.text = "it's a Scissor"
+            }else{
+                labelText.text = "Can't decide ._."
+            }
+
+
 
         }
 

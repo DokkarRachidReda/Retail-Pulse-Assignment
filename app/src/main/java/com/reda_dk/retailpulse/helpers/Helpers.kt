@@ -10,8 +10,9 @@ import java.io.BufferedReader
 import java.io.FileDescriptor
 import java.io.IOException
 import java.io.InputStreamReader
+import kotlin.math.sqrt
 
-  fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
+fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
     val preCalculedVects = ArrayList<MainActivity.MyVector>()
     val inputStream = context.assets.open("rps_vecs.tsv")
     val buffer = BufferedReader(InputStreamReader(inputStream))
@@ -76,13 +77,18 @@ import java.io.InputStreamReader
 
  fun ecludienDist(vect1 :MainActivity.MyVector , vect2 : MainActivity.MyVector):Double{
 
-     var dist = 0.0
+     var dist:Double = 0.0
 
      for (i in 0..vect1.value.size-1){
 
-         dist += Math.pow(vect1.value[i] - vect2.value[i],2.0)
+         Log.e("dist","value 1 : "+vect1.value[i].toString())
+         Log.e("dist","value 2 : "+vect2.value[i].toString())
 
+         dist += (vect1.value[i] - vect2.value[i])*(vect1.value[i] - vect2.value[i])
+
+         Log.e("dist","new dist : "+dist.toString())
+         Log.e("dist","----------------------")
      }
-
-     return Math.sqrt(dist)
+     Log.e("dist","*************"+ sqrt(dist) +"*************")
+     return sqrt(dist)
  }
