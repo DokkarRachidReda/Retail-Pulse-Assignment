@@ -12,7 +12,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import kotlin.math.sqrt
 
-fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
+ fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
     val preCalculedVects = ArrayList<MainActivity.MyVector>()
     val inputStream = context.assets.open("rps_vecs.tsv")
     val buffer = BufferedReader(InputStreamReader(inputStream))
@@ -22,10 +22,10 @@ fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
         var line =buffer.readLine()
         while ( line != null) {
 
-            val list = ArrayList<Float>()
+            val list = ArrayList<Double>()
             val values = line.split("\t")
 
-            for( st in values){list.add(st.trim().toFloat())}
+            for( st in values){list.add(st.trim().toDouble())}
             preCalculedVects.add(MainActivity.MyVector(list,-1))
             line = buffer.readLine()
         }

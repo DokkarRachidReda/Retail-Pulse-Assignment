@@ -124,9 +124,9 @@ class MainActivity : AppCompatActivity() {
 
             // copying tensor to MyVector
             var outputVector:MyVector? = null
-            val outputList = ArrayList<Float>()
+            val outputList = ArrayList<Double>()
             for (i in 0 ..  15 ){
-                outputList.add(outputs.buffer.getFloat(i))
+                outputList.add(outputs.buffer.getDouble(i))
 
             }
             outputVector = MyVector(outputList,-1)
@@ -139,11 +139,12 @@ class MainActivity : AppCompatActivity() {
             for (i in 0 .. preCalculedVects.size -1 ){
                 dist = ecludienDist(preCalculedVects[i],outputVector)
 
-                //Log.e("rrrr",dist.toString())
+
 
                 if(minDist > dist ){
                     minDist = dist
                     label = preCalculedVects[i].label
+                    
                 }
             }
 
@@ -169,7 +170,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    data class MyVector(val value:ArrayList<Float>,var label:Int)
+    data class MyVector(val value:ArrayList<Double>,var label:Int)
 
 }
 
