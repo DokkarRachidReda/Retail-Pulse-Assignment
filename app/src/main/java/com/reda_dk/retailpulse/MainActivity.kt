@@ -3,10 +3,7 @@ package com.reda_dk.retailpulse
 import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +26,9 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 
 import kotlin.collections.ArrayList
 
@@ -50,14 +50,15 @@ class MainActivity : AppCompatActivity() {
         .add( CastOp( DataType.FLOAT32 ) )
         .build()
 
-    val preCalculedVects = ArrayList<MyVector>()
+    lateinit var preCalculedVects : ArrayList<MyVector>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loadPreCalculedVects(this)
+        preCalculedVects = loadPreCalculedVects(this)
 
+        Log.e("rrrrrr",preCalculedVects[0].label.toString())
 
         upload.setOnClickListener(View.OnClickListener {
             Dexter.withContext(this)
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    data class MyVector(val value:ArrayList<Double>)
+    data class MyVector(val value:ArrayList<Double>,var label:Int)
 
 }
 

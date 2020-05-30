@@ -25,12 +25,28 @@ import java.io.InputStreamReader
             val values = line.split("\t")
 
             for( st in values){list.add(st.trim().toDouble())}
-            preCalculedVects.add(MainActivity.MyVector(list))
+            preCalculedVects.add(MainActivity.MyVector(list,-1))
             line = buffer.readLine()
         }
     } catch (e: IOException) {
         e.printStackTrace()
     }
+
+      val labelsStream = context.assets.open("rps_labels.tsv")
+      val labelsBuffer = BufferedReader(InputStreamReader(labelsStream))
+      var label :String? =""
+      var i = 0
+      try {
+           label =labelsBuffer.readLine()
+          while ( label != null) {
+
+              preCalculedVects[i].label = label.toInt()
+              label = labelsBuffer.readLine()
+              i++
+          }
+      } catch (e: IOException) {
+          e.printStackTrace()
+      }
 
     return preCalculedVects
 }
