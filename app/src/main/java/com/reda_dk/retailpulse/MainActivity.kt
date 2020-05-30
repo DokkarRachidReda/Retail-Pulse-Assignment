@@ -86,6 +86,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
+
+
+
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -114,7 +121,29 @@ class MainActivity : AppCompatActivity() {
 
             interpreter.run( imageBuffer.buffer , outputs.buffer )
 
-            
+            // copying tensor to MyVector
+            var outputVector:MyVector? = null
+            val outputList = ArrayList<Double>()
+            for (i in 0 ..  15 ){
+                outputList.add(outputs.buffer.getDouble(i))
+
+            }
+            outputVector = MyVector(outputList,-1)
+
+            // finding correct Label
+            var minDist  = Double.MAX_VALUE
+            var dist=0.0
+            var label = 0
+
+            for (i in 0 .. preCalculedVects.size -1 ){
+                dist = ecludienDist(outputVector,preCalculedVects[i])
+                if(minDist > dist ){
+                    minDist = dist
+                    label = preCalculedVects[i].label
+                }
+            }
+
+            Log.d("out","------------------>"+label.toString())
 
         }
 

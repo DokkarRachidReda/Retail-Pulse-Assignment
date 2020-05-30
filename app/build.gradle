@@ -40,6 +40,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     implementation 'com.karumi:dexter:6.1.2'
+
+    implementation 'com.airbnb.android:lottie:2.8.0'
+
     // Import tflite dependencies
     implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
     implementation 'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'

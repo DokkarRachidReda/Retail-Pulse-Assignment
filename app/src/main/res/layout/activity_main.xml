@@ -14,25 +14,60 @@
         android:layout_weight="0.5"
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="12dp"
         android:layout_weight="5"
-        android:id="@+id/image"
+        app:lottie_fileName="pulso.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="Let's play Rock, Paper and Scissors with Pulso"
+        android:textColor="#222"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="24sp"
+        android:gravity="center"
         />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:textColor="#222"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="24sp"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:layout_marginHorizontal="12dp"
         android:id="@+id/upload"
+        android:background="@drawable/x_rounded_16dp_primary"
+        android:text="Choose  an Image"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
         />
 
 </LinearLayout>
