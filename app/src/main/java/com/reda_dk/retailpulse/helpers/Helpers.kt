@@ -22,10 +22,10 @@ fun loadPreCalculedVects(context: Context) : ArrayList<MainActivity.MyVector> {
         var line =buffer.readLine()
         while ( line != null) {
 
-            val list = ArrayList<Double>()
+            val list = ArrayList<Float>()
             val values = line.split("\t")
 
-            for( st in values){list.add(st.trim().toDouble())}
+            for( st in values){list.add(st.trim().toFloat())}
             preCalculedVects.add(MainActivity.MyVector(list,-1))
             line = buffer.readLine()
         }

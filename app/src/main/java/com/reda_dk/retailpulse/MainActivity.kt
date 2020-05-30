@@ -35,7 +35,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     val outputs = TensorBuffer.createFixedSize( intArrayOf( 1 , 16 ) , DataType.FLOAT32 )
-   // val input = TensorBuffer.createFixedSize( intArrayOf( 1 , 300 , 300 , 3 ) , DataType.UINT8 )
+
 
     val imageProcessor = ImageProcessor.Builder()
         // Resize using Bilinear and Nearest Neighbor methods
@@ -124,9 +124,9 @@ class MainActivity : AppCompatActivity() {
 
             // copying tensor to MyVector
             var outputVector:MyVector? = null
-            val outputList = ArrayList<Double>()
+            val outputList = ArrayList<Float>()
             for (i in 0 ..  15 ){
-                outputList.add(outputs.buffer.getDouble(i))
+                outputList.add(outputs.buffer.getFloat(i))
 
             }
             outputVector = MyVector(outputList,-1)
@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
             var label = -1
 
             for (i in 0 .. preCalculedVects.size -1 ){
-                dist = ecludienDist(outputVector,preCalculedVects[i])
+                dist = ecludienDist(preCalculedVects[i],outputVector)
 
                 //Log.e("rrrr",dist.toString())
 
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    data class MyVector(val value:ArrayList<Double>,var label:Int)
+    data class MyVector(val value:ArrayList<Float>,var label:Int)
 
 }
 
